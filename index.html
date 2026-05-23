@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESP32 Firmware Auto Update Helper by dk</title>
+    <!-- esp-web-tools 라이브러리 불러오기 -->
+    <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px; background-color: #f5f5f5; }
+        .card { background: white; padding: 30px; border-radius: 12px; display: inline-block; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1 { color: #333; }
+        esp-web-install-button { margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>아이오닉 5 DIY 열선/통풍 스마트 모듈 펌웨어 업데이트</h1>
+<p>
+- 제작자 : dk -<br><br><br>
+아이오닉5 열선/통풍 스마트 모듈 전용 펌웨어 입니다.<br>
+아이오닉5 ~2023년형까지만 동작되도록 프로그래밍 되어 있으며<br>
+그외 년식 차량에서 절대 사용하지 마세요.<br>
+펌웨어 업데이트를 진행하는 것은 이것으로 인하여 문제가 발생시 제작자는<br>
+어떠한 책임이 없다는 동의하에 진행되는 것으로 간주합니다.<br><br>
+
+<br>
+1. 기기의 9번(BOOT) 버튼을 누른 상태로 USB를 컴퓨터에 꽂으세요.<br>
+2. USB를 꽂고 1초 뒤에 버튼에서 손을 떼세요.<br>
+3. 아래 [CONNECT] 버튼을 누르고 포트(COM...)를 선택하세요.<br>
+4. [INSTALL]을 눌러 설치를 시작하세요.<br>
+ESP32 보드를 컴퓨터 USB에 연결한 후, 아래 '설치(Install)' 버튼을 누르세요.</p>
+        
+        <!-- 이 태그가 브라우저에 시리얼 연결 팝업과 업로드 기능을 만들어줍니다 -->
+        <esp-web-install-button manifest="manifest.json"></esp-web-install-button>
+    </div>
+
+</body>
+</html>
