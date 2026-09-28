@@ -16,6 +16,7 @@
             --warning-bg: rgba(239, 68, 68, 0.1);
             --warning-border: #ef4444;
             --border-color: #334155;
+            --toss-blue: #3182f6;
         }
 
         * {
@@ -161,12 +162,97 @@
         .action-area {
             text-align: center;
             padding-top: 10px;
+            margin-bottom: 20px;
         }
 
         esp-web-install-button {
             --esp-tools-button-color: #0284c7;
             --esp-tools-button-text-color: #ffffff;
             --esp-tools-button-border-radius: 10px;
+        }
+
+        /* 개발자 후원 섹션 스타일 */
+        .donate-section {
+            margin-top: 36px;
+            padding-top: 24px;
+            border-top: 1px dashed var(--border-color);
+            text-align: center;
+        }
+
+        .donate-title {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .donate-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .donate-grid {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .donate-card {
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 16px;
+            flex: 1;
+            min-width: 220px;
+            max-width: 260px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .donate-card h4 {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .qr-code {
+            width: 140px;
+            height: 140px;
+            background: #ffffff;
+            padding: 6px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+        }
+
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .toss-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            width: 100%;
+            padding: 12px;
+            background-color: var(--toss-blue);
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+            margin-top: 8px;
+        }
+
+        .toss-btn:hover {
+            background-color: #1b64da;
         }
     </style>
 </head>
@@ -231,6 +317,38 @@
         <div class="action-area">
             <esp-web-install-button manifest="manifest.json"></esp-web-install-button>
         </div>
+
+<!-- 개발자 후원 영역 (카카오페이 QR + 토스 QR) -->
+<div class="donate-section">
+    <div class="donate-title">☕ 제작자에게 따뜻한 커피 한 잔 선물하기</div>
+    <div class="donate-desc">유용하게 사용하셨다면 모듈 개발 지속을 위해 마음을 보태주세요!</div>
+    
+    <div class="donate-grid">
+        <!-- 카카오페이 QR 카드 -->
+        <div class="donate-card">
+            <h4>카카오페이 (QR 스캔)</h4>
+            <div class="qr-code">
+                <!-- kakao_qr.png 파일을 저장소에 올리고 경로를 맞춰주세요 -->
+                <img src="./kakao_qr.png" alt="카카오페이 송금 QR">
+            </div>
+            <p style="font-size:0.75rem; color:var(--text-muted); margin-top: 4px;">
+                카카오톡 스캔
+            </p>
+        </div>
+
+        <!-- 토스 QR 카드 -->
+        <div class="donate-card">
+            <h4>토스 (QR 스캔)</h4>
+            <div class="qr-code">
+                <!-- toss_qr.png 파일을 저장소에 올리고 경로를 맞춰주세요 -->
+                <img src="./toss_qr.jpg" alt="토스 송금 QR">
+            </div>
+            <p style="font-size:0.75rem; color:var(--text-muted); margin-top: 4px;">
+                토스 앱 스캔
+            </p>
+        </div>
+    </div>
+</div>
     </div>
 
 </body>
