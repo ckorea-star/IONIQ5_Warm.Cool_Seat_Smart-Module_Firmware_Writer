@@ -7,33 +7,230 @@
     <!-- esp-web-tools 라이브러리 불러오기 -->
     <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
     <style>
-        body { font-family: sans-serif; text-align: center; padding: 50px; background-color: #f5f5f5; }
-        .card { background: white; padding: 30px; border-radius: 12px; display: inline-block; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        h1 { color: #333; }
-        esp-web-install-button { margin-top: 20px; }
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-color: #38bdf8;
+            --warning-bg: rgba(239, 68, 68, 0.1);
+            --warning-border: #ef4444;
+            --border-color: #334155;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 640px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-color);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-main);
+            word-break: keep-all;
+        }
+
+        .author {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        /* 경고 및 면책 조항 박스 */
+        .warning-box {
+            background-color: var(--warning-bg);
+            border-left: 4px solid var(--warning-border);
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            font-size: 0.88rem;
+            color: #fca5a5;
+            text-align: left;
+            word-break: keep-all;
+        }
+
+        .warning-box strong {
+            color: #ef4444;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* 사용방법 가이드 */
+        .section-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 12px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .control-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 24px;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        .control-table th, .control-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .control-table th {
+            color: var(--text-muted);
+            font-weight: 500;
+            width: 38%;
+        }
+
+        .control-table td {
+            color: var(--text-main);
+        }
+
+        /* 순서 안내 List */
+        .steps {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .steps ol {
+            padding-left: 20px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .steps li {
+            margin-bottom: 8px;
+        }
+
+        .steps li:last-child {
+            margin-bottom: 0;
+        }
+
+        .steps strong {
+            color: var(--text-main);
+        }
+
+        /* ESP Web Tools 버튼 커스텀 */
+        .action-area {
+            text-align: center;
+            padding-top: 10px;
+        }
+
+        esp-web-install-button {
+            --esp-tools-button-color: #0284c7;
+            --esp-tools-button-text-color: #ffffff;
+            --esp-tools-button-border-radius: 10px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <h1>아이오닉 5 DIY 열선/통풍 스마트 모듈 펌웨어 업데이트</h1>
-<p>
-- 제작자 : dk -<br><br><br>
-아이오닉5 열선/통풍 스마트 모듈 전용 펌웨어 입니다.<br>
-아이오닉5 ~2023년형까지만 동작되도록 프로그래밍 되어 있으며<br>
-그외 년식 차량에서 절대 사용하지 마세요.<br>
-펌웨어 업데이트를 진행하는 것은 이것으로 인하여 문제가 발생시 제작자는<br>
-어떠한 책임이 없다는 동의하에 진행되는 것으로 간주합니다.<br><br>
+    <div class="container">
+        <!-- 헤더 섹션 -->
+        <div class="header">
+            <span class="badge">IONIQ 5 Smart Module</span>
+            <h1>시트 열선/통풍 스마트 모듈<br>펌웨어 업데이터</h1>
+            <p class="author">제작자 : dk</p>
+        </div>
 
-<br>
-1. 기기의 9번(BOOT) 버튼을 누른 상태로 USB를 컴퓨터에 꽂으세요.<br>
-2. USB를 꽂고 1초 뒤에 버튼에서 손을 떼세요.<br>
-3. 아래 [CONNECT] 버튼을 누르고 포트(COM...)를 선택하세요.<br>
-4. [INSTALL]을 눌러 설치를 시작하세요.<br>
-ESP32 보드를 컴퓨터 USB에 연결한 후, 아래 '설치(Install)' 버튼을 누르세요.</p>
-        
-        <!-- 이 태그가 브라우저에 시리얼 연결 팝업과 업로드 기능을 만들어줍니다 -->
-        <esp-web-install-button manifest="manifest.json"></esp-web-install-button>
+        <!-- 경고 문구 -->
+        <div class="warning-box">
+            <strong>⚠️ 사용 전 주의사항 및 동의</strong>
+            본 페이지는 <b>아이오닉 5 (~2023년형) 전용</b> 모듈 펌웨어 업데이터입니다. 그 외 연식의 차량에서는 절대로 사용하지 마세요.<br>
+            펌웨어 업데이트 및 차량 적용 중 발생하는 문제에 대한 책임은 사용자 본인에게 있습니다.
+        </div>
+
+        <!-- 사용 방법 : 버튼 제어 표 -->
+        <div class="section-title">🕹️ 버튼 기능 안내</div>
+        <table class="control-table">
+            <tr>
+                <th>TUNE UP</th>
+                <td>(운전석) 시트 열선 3 ➔ 2 ➔ 1단 ➔ OFF</td>
+            </tr>
+            <tr>
+                <th>TUNE DOWN</th>
+                <td>(운전석) 시트 통풍 3 ➔ 2 ➔ 1단 ➔ OFF</td>
+            </tr>
+            <tr>
+                <th>TUNE CENTER (1회)</th>
+                <td>운전석 / 동승석 제어 전환</td>
+            </tr>
+            <tr>
+                <th>TUNE CENTER (2회)</th>
+                <td>핸들 열선 ON / OFF</td>
+            </tr>
+            <tr>
+                <th>TUNE CENTER (3회)</th>
+                <td>동승석 연동 기능</td>
+            </tr>
+            <tr>
+                <th>TUNE CENTER (4회)</th>
+                <td>메모리 기능 ON / OFF</td>
+            </tr>
+        </table>
+
+        <!-- 사용 방법 : 연결 순서 -->
+        <div class="section-title">📲 업데이트 설치 순서</div>
+        <div class="steps">
+            <ol>
+                <li>기기의 <strong>9번(BOOT) 버튼</strong>을 누른 상태로 PC USB에 연결합니다.</li>
+                <li>연결 1초 후 버튼에서 손을 뗍니다.</li>
+                <li>아래 <strong>[Connect]</strong> 버튼을 눌러 연결된 시리얼 포트(COM...)를 선택하세요.</li>
+                <li><strong>[Install]</strong>을 눌러 펌웨어 설치를 시작합니다.</li>
+            </ol>
+        </div>
+
+        <!-- 설치 버튼 영역 -->
+        <div class="action-area">
+            <esp-web-install-button manifest="manifest.json"></esp-web-install-button>
+        </div>
     </div>
 
 </body>
